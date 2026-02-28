@@ -1,0 +1,26 @@
+# Ignorar la carpeta del frontend (está en ../)
+../carpinteria-liviano-k5/
+
+# Ignorar cualquier otra cosa en la carpeta padre
+../*
+
+# Pero NO ignorar archivos de server-cl
+!../server-cl/*
+
+# Ignorar archivos normales de Node
+node_modules/
+.env
+.DS_Store
+dist/
+build/
+*.log
+npm-debug.log*
+EOF
+
+# 2. Eliminar del índice la carpeta del frontend
+git rm -r --cached ../carpinteria-liviano-k5
+
+# 3. Agregar cambios
+git add .
+git status
+# Ahora deberías ver SOLO archivos de server-cl

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: tu-backend
+    env: node
+    rootDir: server-cl 
+    buildCommand: npm install
+    startCommand: npm start
