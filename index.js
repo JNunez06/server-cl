@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { userController } from "./controller/userController.js";
 import { quoteController } from "./controller/quoteController.js";
+import { ProductsController } from "./controller/productController.js";
+
 
 
 dotenv.config();
@@ -18,6 +20,11 @@ app.get("/quotes", quoteController.findAll);
 app.get("/quotes/:id", quoteController.findById);
 app.put("/quotes/:id", quoteController.update);
 app.delete("/quotes/:id", quoteController.delete);
+app.post("/products", ProductsController.create)
+app.get("/products", ProductsController.findAll)
+app.get("/products:id", ProductsController.findById)
+app.put("/products:id", ProductsController.update)
+app.delete("/products:id", ProductsController.delete)
 
 const PORT = 4000;
 
