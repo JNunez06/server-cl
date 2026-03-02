@@ -22,9 +22,9 @@ app.put("/quotes/:id", quoteController.update);
 app.delete("/quotes/:id", quoteController.delete);
 app.post("/products", ProductsController.create)
 app.get("/products", ProductsController.findAll)
-app.get("/products:id", ProductsController.findById)
-app.put("/products:id", ProductsController.update)
-app.delete("/products:id", ProductsController.delete)
+app.get("/products/:id", ProductsController.findById)
+app.put("/products/:id", ProductsController.update)
+app.delete("/products/:id", ProductsController.delete)
 
 const PORT = 4000;
 
