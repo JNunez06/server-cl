@@ -3,6 +3,7 @@ import { ProductsService } from "../service/productService.js"
 export const ProductsController = {
   async create(req, res) {
     try {
+      console.log("Datos recibidos para crear producto:", req.body)
       const product = await ProductsService.createProduct(req.body)
       res.status(201).json(product)
     } catch (error) {
