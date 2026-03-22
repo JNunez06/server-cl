@@ -4,6 +4,8 @@ import cors from "cors";
 import { userController } from "./controller/userController.js";
 import { quoteController } from "./controller/quoteController.js";
 import { ProductsController } from "./controller/productController.js";
+import { authController } from "./controller/authController.js";
+import { verifyToken } from "./middleware/verifyToken.js";
 
 
 
@@ -13,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/users", userController.getUsers);
+app.get("/users", verifyToken, userController.getUsers);
 app.post("/users", userController.createUser);
 app.post("/quotes", quoteController.create);
 app.get("/quotes", quoteController.findAll);
@@ -25,6 +27,11 @@ app.get("/products", ProductsController.findAll)
 app.get("/products/:id", ProductsController.findById)
 app.put("/products/:id", ProductsController.update)
 app.delete("/products/:id", ProductsController.delete)
+
+app.post("/register", authController.register);
+app.post("/login", authController.login);
+
+
 
 const PORT = 4000;
 
