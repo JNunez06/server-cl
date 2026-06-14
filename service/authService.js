@@ -30,6 +30,6 @@ export const authService = {
       { expiresIn: "1h" }
     );
 
-    return { token };
+    return { token, user: { username: user.username, email: user.email } };
   }
 };
