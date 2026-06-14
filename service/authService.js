@@ -16,10 +16,9 @@ export const authService = {
     return user;
   },
 
-  async login(email, password) {
+  async login(identifier, password) {
     const users = await userRepository.getAll();
-    const user = users.find(u => u.email === email);
-
+    const user = users.find(u => u.email === identifier || u.username === identifier);
     if (!user) throw new Error("Usuario no encontrado");
 
     const valid = await bcrypt.compare(password, user.password);
