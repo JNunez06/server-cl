@@ -4,10 +4,9 @@ import cors from "cors";
 import { userController } from "./controller/userController.js";
 import { quoteController } from "./controller/quoteController.js";
 import { ProductsController } from "./controller/productController.js";
+import { invoiceController } from "./controller/invoiceController.js";
 import { authController } from "./controller/authController.js";
 import { verifyToken } from "./middleware/verifyToken.js";
-
-
 
 dotenv.config();
 
@@ -16,22 +15,31 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/users", verifyToken, userController.getUsers);
+app.get("/users/:id", verifyToken, userController.getUserById);
 app.post("/users", userController.createUser);
+app.put("/users/:id", userController.updateUser);
+app.delete("/users/:id", userController.deleteUser);
+
 app.post("/quotes", quoteController.create);
 app.get("/quotes", quoteController.findAll);
 app.get("/quotes/:id", quoteController.findById);
 app.put("/quotes/:id", quoteController.update);
 app.delete("/quotes/:id", quoteController.delete);
-app.post("/products", ProductsController.create)
-app.get("/products", ProductsController.findAll)
-app.get("/products/:id", ProductsController.findById)
-app.put("/products/:id", ProductsController.update)
-app.delete("/products/:id", ProductsController.delete)
+
+app.post("/products", ProductsController.create);
+app.get("/products", ProductsController.findAll);
+app.get("/products/:id", ProductsController.findById);
+app.put("/products/:id", ProductsController.update);
+app.delete("/products/:id", ProductsController.delete);
+
+app.get("/invoices", invoiceController.getInvoices);
+app.get("/invoices/:id", invoiceController.getInvoiceById);
+app.post("/invoices", invoiceController.createInvoice);
+app.put("/invoices/:id", invoiceController.updateInvoice);
+app.delete("/invoices/:id", invoiceController.deleteInvoice);
 
 app.post("/register", authController.register);
 app.post("/login", authController.login);
-
-
 
 const PORT = 4000;
 
